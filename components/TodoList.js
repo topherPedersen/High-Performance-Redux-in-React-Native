@@ -68,7 +68,7 @@ class TodoList extends React.PureComponent {
     setTimeout( () => {
       // Create an array of 1,000,000 todos
       let oneMillionTodosArray = []; // Numerically Indexed Array
-      for (var i = 0; i < 1000000; i++) {
+      for (var i = 0; i < 13; i++) {
         const nextTodo = {
           id: randomStr(),
           task: randomStr(),
@@ -115,6 +115,7 @@ class TodoList extends React.PureComponent {
           <Button 
             title="Add New Todo"
             onPress={ () => this.addNewTodo() } />
+          <Button title="Debug Redux" onPress={ () => alert(JSON.stringify(this.props.todos)) } />
         </View>
 
         <View style={{flex: 85, justifyContent: 'center', backgroundColor: 'white'}}>

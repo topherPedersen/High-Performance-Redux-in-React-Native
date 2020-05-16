@@ -27,22 +27,20 @@ switch (action.type) {
       return newState;
     case MARK_COMPLETED:
       const completedTodoId = action.payload;
-      alert(completedTodoId);
       const markCompletedState = {...state};
-      for (var i = 0; i < state.item.length; i++) {
-        if (markCompletedState.item[i] === completedTodoId) {
-          markCompletedState.completed = true;
+      for (var i = 0; i < markCompletedState.item.length; i++) {
+        if (markCompletedState.item[i].id == completedTodoId) {
+          markCompletedState.item[i].completed = true;
           break;
         }
       }
       return markCompletedState;
     case MARK_NOT_COMPLETED:
       const notCompletedTodoId = action.payload;
-      alert(notCompletedTodoId);
       const markNotCompletedState = {...state};
-      for (var i = 0; i < state.item.length; i++) {
-        if (markNotCompletedState.item[i] === notCompletedTodoId) {
-          markNotCompletedState.completed = false;
+      for (var i = 0; i < markNotCompletedState.item.length; i++) {
+        if (markNotCompletedState.item[i].id == notCompletedTodoId) {
+          markNotCompletedState.item[i].completed = false;
           break;
         }
       }
