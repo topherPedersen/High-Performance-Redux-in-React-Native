@@ -30,7 +30,7 @@ switch (action.type) {
       const markCompletedTodoArray = {...state}.item.map( item => {
         if (item.id !== completedTodoId) {
           return item;
-        } else if (item.id !== completedTodoId) {
+        } else if (item.id === completedTodoId) {
           item.completed = true;
           return item;
         }
@@ -45,7 +45,7 @@ switch (action.type) {
       const markNotCompletedTodoArray = {...state}.item.map( item => {
         if (item.id !== notCompletedTodoId) {
           return item;
-        } else if (item.id !== notCompletedTodoId) {
+        } else if (item.id === notCompletedTodoId) {
           item.completed = false;
           return item;
         }

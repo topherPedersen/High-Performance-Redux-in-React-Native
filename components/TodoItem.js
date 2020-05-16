@@ -31,7 +31,7 @@ class TodoItem extends React.PureComponent {
 
   // Mark a todo item as completed
   markCompleted() {
-    this.props.markCompleted(completedTodoId);
+    this.props.markCompleted(this.props.id);
   }
 
   // Mark a todo item as NOT completed
