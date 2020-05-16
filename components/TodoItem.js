@@ -39,15 +39,18 @@ class TodoItem extends React.PureComponent {
       completed: true,
     };
     this.setState(toggledState);
+    */
 
     // Update Redux
+    /*
     const completedTodoId = this.props.id;
     const dispatchMarkCompleted = (id) => this.props.markCompleted(id);
     setTimeout( () => {
       dispatchMarkCompleted(completedTodoId);
     }, 0);
-
     */
+
+    this.props.markCompleted(completedTodoId);
   }
 
   // Mark a todo item as NOT completed
@@ -60,15 +63,18 @@ class TodoItem extends React.PureComponent {
       completed: false,
     };
     this.setState(toggledState);
+    */
 
     // Update Redux
+    /*
     const notCompletedTodoId = this.props.id;
     const dispatchMarkNotCompleted = (id) => this.props.markNotCompleted(id);
     setTimeout( () => {
       dispatchMarkNotCompleted(notCompletedTodoId);
     }, 0);
-
     */
+
+    this.props.markNotCompleted(this.props.id);
   }
 
   render() {
@@ -76,14 +82,14 @@ class TodoItem extends React.PureComponent {
     <View style={{flexDirection: 'row', flex: 100}}>
 
         <View style={{flex: 75}}>
-          <Text style={{fontSize: 16, textDecorationLine: this.state.completed ? 'line-through' : 'none'}}>{this.props.task}</Text>
+          <Text style={{fontSize: 16, textDecorationLine: this.props.completed ? 'line-through' : 'none'}}>{this.props.task}</Text>
         </View>
 
         <View style={{flex: 25}}>
           <Button 
-            title={ this.state.completed ? "Undo" : "X"}
+            title={ this.props.completed ? "Undo" : "X"}
             onPress={ () => { 
-              this.state.completed ? this.markNotCompleted() : this.markCompleted();
+              this.props.completed ? this.markNotCompleted() : this.markCompleted();
             }} />
         </View>
 
