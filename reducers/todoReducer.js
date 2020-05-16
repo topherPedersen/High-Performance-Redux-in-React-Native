@@ -27,6 +27,7 @@ switch (action.type) {
       return newState;
     case MARK_COMPLETED:
       const completedTodoId = action.payload;
+      alert(completedTodoId);
       const markCompletedState = {...state};
       for (var i = 0; i < state.item.length; i++) {
         if (markCompletedState.item[i] === completedTodoId) {
@@ -37,6 +38,7 @@ switch (action.type) {
       return markCompletedState;
     case MARK_NOT_COMPLETED:
       const notCompletedTodoId = action.payload;
+      alert(notCompletedTodoId);
       const markNotCompletedState = {...state};
       for (var i = 0; i < state.item.length; i++) {
         if (markNotCompletedState.item[i] === notCompletedTodoId) {
