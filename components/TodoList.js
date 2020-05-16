@@ -95,7 +95,6 @@ class TodoList extends React.PureComponent {
           <Button 
             title="Add New Todo"
             onPress={ () => this.addNewTodo() } />
-          <Button title="Debug Redux" onPress={ () => alert(JSON.stringify(this.props.todos.loading)) } />
         </View>
 
         <View style={{flex: 85, justifyContent: 'center', backgroundColor: 'white'}}>
