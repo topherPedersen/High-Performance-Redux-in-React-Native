@@ -1,3 +1,10 @@
+import { 
+  ADD_ONE_MILLION_TODOS,
+  ADD_ONE_TODO,
+  MARK_COMPLETED,
+  MARK_NOT_COMPLETED,
+} from '../actions/types';
+
 const initialState = {
   loading: true,
   item: [],
@@ -12,13 +19,13 @@ if (typeof state === 'undefined') {
 }
 
 switch (action.type) {
-    case 'ADD_ONE_MILLION_TODOS':
+    case ADD_ONE_MILLION_TODOS:
       const newState = {...state};
       const oneMillionTodos = action.payload;
       newState.item = oneMillionTodos;
       newState.loading = false;
       return newState;
-    case 'MARK_COMPLETED':
+    case MARK_COMPLETED:
       /*
       const markCompletedState = {...state};
       const completedTaskId = action.payload;
@@ -26,7 +33,7 @@ switch (action.type) {
       return markCompletedState;
       */
       return {...state};
-    case 'MARK_NOT_COMPLETED':
+    case MARK_NOT_COMPLETED:
       /*
       const markNotCompletedState = {...state};
       const notCompletedTaskId = action.payload;
@@ -34,12 +41,16 @@ switch (action.type) {
       return markNotCompletedState;
       */
       return {...state};
-    case 'ADD_ONE_TODO':
+    case ADD_ONE_TODO:
       const previousState = {...state};
       const oldTodosArray = previousState.item;
       const newTodoArray = [action.payload];
       const oneMillionPlusTodosArray = newTodoArray.concat(oldTodosArray);
-      return oneMillionPlusTodosArray;
+      const addOneTodoState = {
+        loading: false,
+        item: oneMillionPlusTodosArray,
+      };
+      return addOneTodoState;
     default:
       return {...state};
 }
