@@ -68,7 +68,7 @@ class TodoList extends React.PureComponent {
     setTimeout( () => {
       // Create an array of 1,000,000 todos
       let oneMillionTodosArray = []; // Numerically Indexed Array
-      for (var i = 0; i < 13; i++) {
+      for (var i = 0; i < 1000000; i++) {
         const nextTodo = {
           id: randomStr(),
           task: randomStr(),
