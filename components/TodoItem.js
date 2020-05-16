@@ -31,49 +31,11 @@ class TodoItem extends React.PureComponent {
 
   // Mark a todo item as completed
   markCompleted() {
-
-    /*
-
-    // Update local state
-    const toggledState = {
-      completed: true,
-    };
-    this.setState(toggledState);
-    */
-
-    // Update Redux
-    /*
-    const completedTodoId = this.props.id;
-    const dispatchMarkCompleted = (id) => this.props.markCompleted(id);
-    setTimeout( () => {
-      dispatchMarkCompleted(completedTodoId);
-    }, 0);
-    */
-
     this.props.markCompleted(completedTodoId);
   }
 
   // Mark a todo item as NOT completed
   markNotCompleted() {
-
-    /*
-
-    // Update local state
-    const toggledState = {
-      completed: false,
-    };
-    this.setState(toggledState);
-    */
-
-    // Update Redux
-    /*
-    const notCompletedTodoId = this.props.id;
-    const dispatchMarkNotCompleted = (id) => this.props.markNotCompleted(id);
-    setTimeout( () => {
-      dispatchMarkNotCompleted(notCompletedTodoId);
-    }, 0);
-    */
-
     this.props.markNotCompleted(this.props.id);
   }
 
