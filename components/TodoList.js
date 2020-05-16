@@ -38,33 +38,13 @@ function randomStr() {
 class TodoList extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      todosArray: [],
-    };
   }
 
   componentDidMount() {
-
-    // ----------------------------------------------
-    //             *** IMPORTANT! *** 
-    // ----------------------------------------------
-    // We need to wrap our expensive long running
-    // action below in a setTimeout function to 
-    // push the task to the back of the javascript
-    // call stack. We do this to make sure our
-    // loading spinner (ActivityIndicator) displays.
-    // If we do not do this little trick, the screen
-    // will simply display a white blank screen while
-    // we generate our 1,000,000 todo items.
-    //
-    // Please note that we need to declare constants for anything
-    // involving 'this' that we wish to run inside our setTimeout.
-    // If we do not do this, the function will not know which
-    // 'this' we are talking about and our app will crash.
-    // ----------------------------------------------
+    // Wrap long running/expensive Redux action in a setTimeout function
+    // so that this operation will not block the rendering of our loading
+    // spinner
     const addOneMillionTodos = (todos) => this.props.addOneMillionTodos(todos);
-    const setState = (state) => this.setState(state);
     setTimeout( () => {
       // Create an array of 1,000,000 todos
       let oneMillionTodosArray = []; // Numerically Indexed Array
@@ -76,7 +56,7 @@ class TodoList extends React.PureComponent {
         };
         oneMillionTodosArray.push(nextTodo);
       }
-
+      // Load 1,000,000 todos into Redux
       addOneMillionTodos(oneMillionTodosArray);
     }, 0);
   }
@@ -115,7 +95,7 @@ class TodoList extends React.PureComponent {
           <Button 
             title="Add New Todo"
             onPress={ () => this.addNewTodo() } />
-          <Button title="Debug Redux" onPress={ () => alert(JSON.stringify(this.props.todos)) } />
+          <Button title="Debug Redux" onPress={ () => alert(JSON.stringify(this.props.todos.loading)) } />
         </View>
 
         <View style={{flex: 85, justifyContent: 'center', backgroundColor: 'white'}}>
