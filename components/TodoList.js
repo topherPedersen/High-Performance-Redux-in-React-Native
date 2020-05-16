@@ -67,7 +67,6 @@ class TodoList extends React.PureComponent {
     const setState = (state) => this.setState(state);
     setTimeout( () => {
       // Create an array of 1,000,000 todos
-      let oneMillionTodos = []; // Associative Array
       let oneMillionTodosArray = []; // Numerically Indexed Array
       for (var i = 0; i < 1000000; i++) {
         const nextTodo = {
@@ -75,53 +74,22 @@ class TodoList extends React.PureComponent {
           task: randomStr(),
           completed: false,
         };
-        oneMillionTodos[nextTodo.id] = nextTodo;
         oneMillionTodosArray.push(nextTodo);
       }
 
-      // Update Local State with 1,000,000 todos
-      setState({todosArray: oneMillionTodosArray});
-
-      // Update the Redux Store with 1,000,000 todos
-      addOneMillionTodos(oneMillionTodos);
+      addOneMillionTodos(oneMillionTodosArray);
     }, 0);
   }
 
   addNewTodo() {
-    // Array containing the entire todo (minus the new todo we wish to add)
-    const oldTodosArray = this.state.todosArray;
-
     // Object containing our new todo item
     const newTodo = {
       id: "NewID-" + Math.random().toString(36).substring(2),
       task: "NewTODO-" + Math.random().toString(36).substring(2),
       completed: false,
     };
-
-    // Create a new array which contains our new todo item at index 0,
-    // along with all of the previously added todo items
-    let newTodoArray = [newTodo];
-    const oneMillionPlusTodosArray = newTodoArray.concat(oldTodosArray);
-
-    // Update the UI to display our newly added todo item
-    this.setState({todosArray: oneMillionPlusTodosArray});
-
-    // Update the Redux Store to include our new todo item
-    const addOneTodo = (todo) => this.props.addOneTodo(todo);
-    setTimeout( () => {
-      addOneTodo(newTodo);
-    }, 0);
-  }
-
-  // Query the Redux Store and display information
-  // regarding the first todo item listed in the 
-  // store.
-  queryReduxForFirstTodo() {
-    const reduxSnapShot = this.props.todos.item;
-    const localStateSnapshot = this.state.todosArray;
-    const keyOfMostRecentTodo = localStateSnapshot[0].id;
-    const firstTodo = reduxSnapShot[keyOfMostRecentTodo];
-    alert(JSON.stringify(firstTodo));
+    // Dispatch Redux Action: ADD_ONE_TODO
+    this.props.addOneTodo(newTodo);
   }
 
   render() {
@@ -147,15 +115,12 @@ class TodoList extends React.PureComponent {
           <Button 
             title="Add New Todo"
             onPress={ () => this.addNewTodo() } />
-          <Button 
-            title="Retrieve First TODO from Redux"
-            onPress={ () => this.queryReduxForFirstTodo() } />
         </View>
 
         <View style={{flex: 85, justifyContent: 'center', backgroundColor: 'white'}}>
           <FlatList
             key="big-todo-list-key"
-            data={this.state.todosArray}
+            data={this.props.todos.item}
             renderItem={({ item }) => (
               <TodoItem 
                 id={item.id}

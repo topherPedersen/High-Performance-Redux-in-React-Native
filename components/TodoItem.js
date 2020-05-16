@@ -32,6 +32,8 @@ class TodoItem extends React.PureComponent {
   // Mark a todo item as completed
   markCompleted() {
 
+    /*
+
     // Update local state
     const toggledState = {
       completed: true,
@@ -44,10 +46,14 @@ class TodoItem extends React.PureComponent {
     setTimeout( () => {
       dispatchMarkCompleted(completedTodoId);
     }, 0);
+
+    */
   }
 
   // Mark a todo item as NOT completed
   markNotCompleted() {
+
+    /*
 
     // Update local state
     const toggledState = {
@@ -61,6 +67,8 @@ class TodoItem extends React.PureComponent {
     setTimeout( () => {
       dispatchMarkNotCompleted(notCompletedTodoId);
     }, 0);
+
+    */
   }
 
   render() {
