@@ -27,33 +27,23 @@ switch (action.type) {
       return newState;
     case MARK_COMPLETED:
       const completedTodoId = action.payload;
-      const markCompletedTodoArray = {...state}.item.map( item => {
-        if (item.id !== completedTodoId) {
-          return item;
-        } else if (item.id === completedTodoId) {
-          item.completed = true;
-          return item;
+      const markCompletedState = {...state};
+      for (var i = 0; i < state.item.length; i++) {
+        if (markCompletedState.item[i] === completedTodoId) {
+          markCompletedState.completed = true;
+          break;
         }
-      });
-      const markCompletedState = {
-        loading: false,
-        todo: markCompletedTodoArray,
-      };
+      }
       return markCompletedState;
     case MARK_NOT_COMPLETED:
       const notCompletedTodoId = action.payload;
-      const markNotCompletedTodoArray = {...state}.item.map( item => {
-        if (item.id !== notCompletedTodoId) {
-          return item;
-        } else if (item.id === notCompletedTodoId) {
-          item.completed = false;
-          return item;
+      const markNotCompletedState = {...state};
+      for (var i = 0; i < state.item.length; i++) {
+        if (markNotCompletedState.item[i] === notCompletedTodoId) {
+          markNotCompletedState.completed = false;
+          break;
         }
-      });
-      const markNotCompletedState = {
-        loading: false,
-        todo: markNotCompletedTodoArray,
-      };
+      }
       return markNotCompletedState;
     case ADD_ONE_TODO:
       const previousState = {...state};
